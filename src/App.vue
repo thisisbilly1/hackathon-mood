@@ -3,14 +3,18 @@
     <div class="chart mt-5">
       <PolarArea :data="chartData" :options="options" />
     </div>
-    <div class="slider mt-5">
+    <div class="slider">
       <v-slider
         v-model="time"
         :min="0"
         :max="5"
         :step="1"
-        thumb-label
-      />
+        thumb-label="always"
+      >
+        <template v-slot:thumb-label>
+          {{ label }}
+        </template>
+      </v-slider>
     </div>
   </v-app>
 </template>
@@ -59,9 +63,13 @@ export default {
     ];
     
     const time = ref(0);
+    
+    const label = computed(() => {
+      return fakeData[time.value]?.time;
+    });
 
     const data = computed(() => {
-      const timedData = fakeData.find(x => x.time === time.value);
+      const timedData = fakeData[time.value];
       if (!timedData) return [];
       // aggregate the moods
       const data = new Array(moods.length).fill(0);
@@ -109,6 +117,7 @@ export default {
       chartData,
       options,
       time,
+      label,
     };
   },
 };
@@ -123,5 +132,6 @@ export default {
 .slider {
   width: 400px;
   margin: auto;
+  margin-top: 50px;
 }
 </style>

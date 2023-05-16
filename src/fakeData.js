@@ -1,6 +1,6 @@
 export default [
   {
-    time: 0,
+    time: '8:00',
     data: [
       {
         name: 'bob',
@@ -49,7 +49,7 @@ export default [
     ]
   },
   {
-    time: 1,
+    time: '9:00',
     data: [
       {
         name: 'bob',
@@ -86,6 +86,202 @@ export default [
       {
         name: 'adam',
         mood: 3,
+      },
+      {
+        name: 'rob',
+        mood: 2,
+      },
+      {
+        name: 'tim',
+        mood: 1,
+      },
+    ]
+  },
+  {
+    time: '10:00',
+    data: [
+      {
+        name: 'bob',
+        mood: 0,
+      },
+      {
+        name: 'billy',
+        mood: 0,
+      },
+      {
+        name: 'fred',
+        mood: 0,
+      },
+      {
+        name: 'nick',
+        mood: 1,
+      },
+      {
+        name: 'chris',
+        mood: 2,
+      },
+      {
+        name: 'craig',
+        mood: 4,
+      },
+      {
+        name: 'fernando',
+        mood: 0,
+      },
+      {
+        name: 'saifil',
+        mood: 2,
+      },
+      {
+        name: 'adam',
+        mood: 3,
+      },
+      {
+        name: 'rob',
+        mood: 2,
+      },
+      {
+        name: 'tim',
+        mood: 1,
+      },
+    ]
+  },
+  {
+    time: '11:00',
+    data: [
+      {
+        name: 'bob',
+        mood: 0,
+      },
+      {
+        name: 'billy',
+        mood: 0,
+      },
+      {
+        name: 'fred',
+        mood: 0,
+      },
+      {
+        name: 'nick',
+        mood: 1,
+      },
+      {
+        name: 'chris',
+        mood: 2,
+      },
+      {
+        name: 'craig',
+        mood: 3,
+      },
+      {
+        name: 'fernando',
+        mood: 1,
+      },
+      {
+        name: 'saifil',
+        mood: 2,
+      },
+      {
+        name: 'adam',
+        mood: 3,
+      },
+      {
+        name: 'rob',
+        mood: 2,
+      },
+      {
+        name: 'tim',
+        mood: 1,
+      },
+    ]
+  },
+  {
+    time: '11:00',
+    data: [
+      {
+        name: 'bob',
+        mood: 0,
+      },
+      {
+        name: 'billy',
+        mood: 0,
+      },
+      {
+        name: 'fred',
+        mood: 0,
+      },
+      {
+        name: 'nick',
+        mood: 1,
+      },
+      {
+        name: 'chris',
+        mood: 2,
+      },
+      {
+        name: 'craig',
+        mood: 2,
+      },
+      {
+        name: 'fernando',
+        mood: 1,
+      },
+      {
+        name: 'saifil',
+        mood: 0,
+      },
+      {
+        name: 'adam',
+        mood: 3,
+      },
+      {
+        name: 'rob',
+        mood: 2,
+      },
+      {
+        name: 'tim',
+        mood: 1,
+      },
+    ]
+  },
+  {
+    time: '12:00',
+    data: [
+      {
+        name: 'bob',
+        mood: 0,
+      },
+      {
+        name: 'billy',
+        mood: 0,
+      },
+      {
+        name: 'fred',
+        mood: 0,
+      },
+      {
+        name: 'nick',
+        mood: 1,
+      },
+      {
+        name: 'chris',
+        mood: 2,
+      },
+      {
+        name: 'craig',
+        mood: 2,
+      },
+      {
+        name: 'fernando',
+        mood: 1,
+      },
+      {
+        name: 'saifil',
+        mood: 0,
+      },
+      {
+        name: 'adam',
+        mood: 2,
       },
       {
         name: 'rob',
