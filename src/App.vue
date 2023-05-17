@@ -1,5 +1,6 @@
 <template>
   <v-app>
+    <ThemeButton />
     <PolarGraph :moods="moods"/>
     <LineGraph :moods="moods"/>
   </v-app>
@@ -7,9 +8,10 @@
 <script>
 import PolarGraph from './components/PolarGraph.vue';
 import LineGraph from './components/LineGraph.vue';
+import ThemeButton from './components/ThemeButton.vue';
 
 export default {
-  components: { PolarGraph, LineGraph },
+  components: { PolarGraph, LineGraph, ThemeButton },
   setup() {
     function getBackgroundColor(color, alpha = 0.7) {
       const opacity = Math.floor(alpha * 255);

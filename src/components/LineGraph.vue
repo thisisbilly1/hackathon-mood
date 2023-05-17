@@ -4,8 +4,9 @@
   </div>
 </template>
 <script>
-import { computed, toRefs } from 'vue';
-import fakeData from '../fakeData';
+import { computed, toRefs } from "vue";
+import fakeData from "../fakeData";
+import { useTheme } from "vuetify";
 
 import {
   Chart as ChartJS,
@@ -15,9 +16,9 @@ import {
   LineElement,
   Title,
   Tooltip,
-  Legend
-} from 'chart.js'
-import { Line } from 'vue-chartjs'
+  Legend,
+} from "chart.js";
+import { Line } from "vue-chartjs";
 
 ChartJS.register(
   CategoryScale,
@@ -27,7 +28,7 @@ ChartJS.register(
   Title,
   Tooltip,
   Legend
-)
+);
 
 export default {
   components: { Line },
@@ -35,13 +36,17 @@ export default {
     moods: {
       type: Array,
       required: true,
-    }
+    },
   },
   setup(props) {
     const { moods } = toRefs(props);
+    const theme = useTheme();
+    const dark = computed(() => {
+      return theme.global.name.value === "dark";
+    });
 
     const chartData = computed(() => ({
-      labels: fakeData.map(t => t.time),
+      labels: fakeData.map((t) => t.time),
       datasets: moods.value.map((mood, moodIndex) => {
         return {
           label: mood.label,
@@ -49,25 +54,49 @@ export default {
           borderColor: mood.backgroundColor,
           color: mood.backgroundColor,
           data: fakeData.reduce((prev, timedData) => {
-            const mapped = timedData.data.map(d => d.mood === moodIndex ? 1 : 0);
+            const mapped = timedData.data.map((d) =>
+              d.mood === moodIndex ? 1 : 0
+            );
             const sum = mapped.reduce((a, b) => a + b, 0);
             return [...prev, sum];
           }, []),
-        }
+        };
       }),
     }));
 
-    const options = {
+    const options = computed(() => ({
       responsive: true,
       maintainAspectRatio: false,
+      scales: {
+        x: {
+          grid: {
+            color: dark.value ? "white" : "black",
+          },
+          ticks: {
+            color: dark.value ? "white" : "black",
+          }
+        },
+        y: {
+          grid: {
+            color: dark.value ? "white" : "black",
+          },
+          ticks: {
+            color: dark.value ? "white" : "black",
+          }
+        },
+      },
       plugins: {
-          tooltip: {
-            intersect: false,
+        tooltip: {
+          intersect: false,
+        },
+        legend: {
+          labels: {
+            color: dark.value ? "white" : "black",
           },
         },
-    };
+      },
+    }));
 
-    
     return {
       chartData,
       options,

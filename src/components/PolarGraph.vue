@@ -7,24 +7,14 @@
       <v-card-title>Moods</v-card-title>
       <v-card-text class="legend">
         <div v-for="mood in moods" :key="mood.label" class="legend-item">
-          <v-sheet
-            :color="mood.color"
-            height="25"
-            width="40"
-          />
-          {{mood.label}}
+          <v-sheet :color="mood.color" height="25" width="40" />
+          {{ mood.label }}
         </div>
       </v-card-text>
     </v-card>
   </div>
   <div class="slider">
-    <v-slider
-      v-model="time"
-      :min="0"
-      :max="5"
-      :step="1"
-      thumb-label="always"
-    >
+    <v-slider v-model="time" :min="0" :max="5" :step="1" thumb-label="always">
       <template v-slot:thumb-label>
         <div class="slider-label">{{ label }}</div>
       </template>
@@ -32,8 +22,9 @@
   </div>
 </template>
 <script>
-import { ref, computed, toRefs } from 'vue';
-import fakeData from '../fakeData';
+import { ref, computed, toRefs } from "vue";
+import fakeData from "../fakeData";
+import { useTheme } from "vuetify";
 
 import {
   Chart as ChartJS,
@@ -50,13 +41,17 @@ export default {
     moods: {
       type: Array,
       required: true,
-    }
+    },
   },
   setup(props) {
+    const theme = useTheme();
+    const dark = computed(() => {
+      return theme.global.name.value === "dark";
+    });
     const { moods } = toRefs(props);
 
     const time = ref(0);
-    
+
     const label = computed(() => {
       return fakeData[time.value]?.time;
     });
@@ -66,7 +61,7 @@ export default {
       if (!timedData) return [];
       // aggregate the moods
       const data = new Array(moods.value.length).fill(0);
-      timedData.data.forEach(person => {
+      timedData.data.forEach((person) => {
         data[person.mood] += 1;
       });
       return data;
@@ -83,7 +78,7 @@ export default {
       ],
     }));
 
-    const options = {
+    const options = computed(() => ({
       responsive: true,
       maintainAspectRatio: false,
       plugins: {
@@ -91,16 +86,17 @@ export default {
           display: false,
         },
       },
-      // elements: {
-      //   arc: {
-      //     angle: 180 / moods.value.length
-      //   }
-      // },
+      elements: {
+        arc: {
+          // angle: 180 / moods.value.length
+          borderColor: dark.value ? "white" : "black",
+        }
+      },
       scales: {
         r: {
           // startAngle: -90,
           grid: {
-            color: "white",
+            color: dark.value ? "white" : "black",
           },
           ticks: {
             display: false,
@@ -108,9 +104,8 @@ export default {
           },
         },
       },
-    };
+    }));
 
-    
     return {
       chartData,
       options,
