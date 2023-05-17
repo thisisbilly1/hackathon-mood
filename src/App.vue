@@ -1,40 +1,17 @@
 <template>
   <v-app>
-    <div class="chart mt-5">
-      <PolarArea :data="chartData" :options="options" />
-    </div>
-    <div class="slider">
-      <v-slider
-        v-model="time"
-        :min="0"
-        :max="5"
-        :step="1"
-        thumb-label="always"
-      >
-        <template v-slot:thumb-label>
-          {{ label }}
-        </template>
-      </v-slider>
-    </div>
+    <PolarGraph :moods="moods"/>
+    <LineGraph :moods="moods"/>
   </v-app>
 </template>
 <script>
-import { ref, computed } from 'vue';
-import fakeData from './fakeData';
-
-import {
-  Chart as ChartJS,
-  RadialLinearScale,
-  ArcElement,
-  Tooltip,
-} from "chart.js";
-import { PolarArea } from "vue-chartjs";
-ChartJS.register(RadialLinearScale, ArcElement, Tooltip);
+import PolarGraph from './components/PolarGraph.vue';
+import LineGraph from './components/LineGraph.vue';
 
 export default {
-  components: { PolarArea },
+  components: { PolarGraph, LineGraph },
   setup() {
-    function getBackgroundColor(color, alpha = 0.5) {
+    function getBackgroundColor(color, alpha = 0.7) {
       const opacity = Math.floor(alpha * 255);
       return color + opacity.toString(16).toUpperCase();
     }
@@ -42,82 +19,33 @@ export default {
     const moods = [
       {
         label: "healthy",
+        color: "#07B151",
         backgroundColor: getBackgroundColor("#07B151"),
       },
       {
         label: "coping",
+        color: "#FCED23",
         backgroundColor: getBackgroundColor("#FCED23"),
       },
       {
         label: "struggling",
+        color: "#F6851E",
         backgroundColor: getBackgroundColor("#F6851E"),
       },
       {
         label: "unwell",
+        color: "#D52127",
         backgroundColor: getBackgroundColor("#D52127"),
       },
       {
         label: "depressed",
+        color: "#733B97",
         backgroundColor: getBackgroundColor("#733B97"),
       },
     ];
-    
-    const time = ref(0);
-    
-    const label = computed(() => {
-      return fakeData[time.value]?.time;
-    });
-
-    const data = computed(() => {
-      const timedData = fakeData[time.value];
-      if (!timedData) return [];
-      // aggregate the moods
-      const data = new Array(moods.length).fill(0);
-      timedData.data.forEach(person => {
-        data[person.mood] += 1;
-      });
-      return data;
-    });
-
-    const chartData = computed(() => ({
-      labels: moods.map((m) => m.label),
-      datasets: [
-        {
-          label: "test",
-          data: data.value,
-          backgroundColor: moods.map((m) => m.backgroundColor),
-        },
-      ],
-    }));
-
-    const options = {
-      responsive: true,
-      maintainAspectRatio: false,
-      // elements: {
-      //   arc: {
-      //     angle: 180 / moods.length
-      //   }
-      // },
-      scales: {
-        r: {
-          // startAngle: -90,
-          grid: {
-            color: "white",
-          },
-          ticks: {
-            display: false,
-            stepSize: 1,
-          },
-        },
-      },
-    };
-
-    
+  
     return {
-      chartData,
-      options,
-      time,
-      label,
+      moods
     };
   },
 };

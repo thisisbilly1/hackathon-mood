@@ -1,6 +1,6 @@
 export default [
   {
-    time: '8:00',
+    time: '8:00 AM',
     data: [
       {
         name: 'bob',
@@ -49,7 +49,7 @@ export default [
     ]
   },
   {
-    time: '9:00',
+    time: '9:00 AM',
     data: [
       {
         name: 'bob',
@@ -98,7 +98,7 @@ export default [
     ]
   },
   {
-    time: '10:00',
+    time: '10:00 AM',
     data: [
       {
         name: 'bob',
@@ -147,7 +147,7 @@ export default [
     ]
   },
   {
-    time: '11:00',
+    time: '11:00 AM',
     data: [
       {
         name: 'bob',
@@ -196,7 +196,7 @@ export default [
     ]
   },
   {
-    time: '11:00',
+    time: '11:00 AM',
     data: [
       {
         name: 'bob',
@@ -245,7 +245,7 @@ export default [
     ]
   },
   {
-    time: '12:00',
+    time: '12:00 PM',
     data: [
       {
         name: 'bob',
