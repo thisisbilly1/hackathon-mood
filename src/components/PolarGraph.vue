@@ -1,22 +1,7 @@
 <template>
   <div class="chart-container">
-    <div>
-      <div class="chart mt-5">
-        <PolarArea :data="chartData" :options="options" />
-      </div>
-      <div class="slider">
-        <v-slider
-          v-model="time"
-          :min="0"
-          :max="5"
-          :step="1"
-          thumb-label="always"
-        >
-          <template v-slot:thumb-label>
-            <div class="slider-label">{{ label }}</div>
-          </template>
-        </v-slider>
-      </div>
+    <div class="chart mt-5">
+      <PolarArea :data="chartData" :options="options" />
     </div>
     <v-card class="legend-container">
       <v-card-title>Moods</v-card-title>
@@ -31,6 +16,19 @@
         </div>
       </v-card-text>
     </v-card>
+  </div>
+  <div class="slider">
+    <v-slider
+      v-model="time"
+      :min="0"
+      :max="5"
+      :step="1"
+      thumb-label="always"
+    >
+      <template v-slot:thumb-label>
+        <div class="slider-label">{{ label }}</div>
+      </template>
+    </v-slider>
   </div>
 </template>
 <script>
@@ -88,6 +86,11 @@ export default {
     const options = {
       responsive: true,
       maintainAspectRatio: false,
+      plugins: {
+        legend: {
+          display: false,
+        },
+      },
       // elements: {
       //   arc: {
       //     angle: 180 / moods.value.length
@@ -127,11 +130,13 @@ export default {
 }
 .chart {
   width: 400px;
+  max-width: 50vw;
   margin-left: auto;
   margin-right: auto;
 }
 .slider {
   width: 400px;
+  max-width: 90vw;
   margin: auto;
   margin-top: 50px;
 }

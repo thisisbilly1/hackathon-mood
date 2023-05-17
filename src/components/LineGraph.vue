@@ -78,6 +78,7 @@ export default {
 
 <style scoped>
 .line-chart {
+  max-width: 100vw;
   width: 850px;
   height: 400px;
   margin-left: auto;
