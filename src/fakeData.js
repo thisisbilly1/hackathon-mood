@@ -196,7 +196,7 @@ export default [
     ]
   },
   {
-    time: '11:00 AM',
+    time: '12:00 AM',
     data: [
       {
         name: 'bob',
@@ -245,7 +245,7 @@ export default [
     ]
   },
   {
-    time: '12:00 PM',
+    time: '1:00 PM',
     data: [
       {
         name: 'bob',
